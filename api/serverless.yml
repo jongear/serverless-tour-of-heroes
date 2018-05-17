@@ -1,0 +1,33 @@
+service: toh-api
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+package:
+  #individually: true
+  # exclude:
+  #   - 'scripts/**'
+
+custom:
+  stage: "${opt:stage, self:provider.stage}"
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  serverless-offline:
+    port: 3000
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  environment: ${file(env.yml):${self:custom.stage}}
+
+functions:
+  docs:
+    handler: src/index.handler
+    events:
+      - http:
+          path: /
+          method: GET
+          cors: true
