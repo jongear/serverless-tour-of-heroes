@@ -17,6 +17,7 @@ script:
   - cd api 
   - npm run lint
   - cd ../website && npm run-script ng build -- --prod --aot --configuration=dev
+  - cd ../
 
 deploy:
   - provider: s3
