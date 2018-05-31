@@ -3,6 +3,6 @@
 echo '###### Starting API deployment! ######'
 
 cd api
-sls deploy --stage dev --verbose --force
+npm run-script sls deploy -- --stage dev --verbose --force
 
 echo '###### API deployment finished! ######'
