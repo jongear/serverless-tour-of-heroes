@@ -20,6 +20,9 @@ script:
   - cd ../website && npm run-script ng build -- --prod --aot --configuration=dev
   - cd ../
 
+before_deploy:
+  - chmod +x ./scripts/env-vars.sh && ./scripts/env-vars.sh
+
 deploy:
   - provider: s3
     skip_cleanup: true
