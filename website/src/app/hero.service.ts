@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
+import { environment } from "../environments/environment";
 import { Hero } from "./hero";
 import { MessageService } from "./message.service";
 
@@ -11,7 +12,7 @@ const httpOptions = {
 
 @Injectable({ providedIn: "root" })
 export class HeroService {
-  private heroesUrl = "api/heroes"; // URL to web api
+  private heroesUrl = `${environment.apiUrl}/heroes`;
 
   constructor(
     private http: HttpClient,
@@ -29,7 +30,7 @@ export class HeroService {
   }
 
   /** GET hero by id. Return `undefined` when id not found */
-  getHeroNo404<Data>(id: number): Observable<Hero> {
+  getHeroNo404<Data>(id: string): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
     return this.http.get<Hero[]>(url).pipe(
       map(heroes => heroes[0]), // returns a {0|1} element array
@@ -42,7 +43,7 @@ export class HeroService {
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getHero(id: number): Observable<Hero> {
+  getHero(id: string): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http
       .get<Hero>(url)
@@ -79,8 +80,8 @@ export class HeroService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteHero(hero: Hero | number): Observable<Hero> {
-    const id = typeof hero === "number" ? hero : hero.id;
+  deleteHero(hero: Hero | string): Observable<Hero> {
+    const id = typeof hero === "string" ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
 
     return this.http
@@ -93,8 +94,10 @@ export class HeroService {
 
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
+    const url = `${this.heroesUrl}/${hero.id}`;
+
     return this.http
-      .put(this.heroesUrl, hero, httpOptions)
+      .put(url, hero, httpOptions)
       .pipe(
         tap(_ => this.log(`updated hero id=${hero.id}`)),
         catchError(this.handleError<any>("updateHero"))
