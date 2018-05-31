@@ -16,11 +16,8 @@ install:
 script:
   - cd api 
   - npm run lint
-  - cd ../website
-
-before_deploy:
   - cd website && npm run-script ng build -- --prod --aot --configuration=dev
-  
+
 deploy:
   - provider: s3
     skip_cleanup: true
