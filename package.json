@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/jongear/serverless-tour-of-heroes#readme",
   "scripts": {
-    "start": "npm run start:api && npm run start:website",
+    "start": "npm run start:api | npm run start:website",
     "start:api": "cd api && npm start",
     "start:website": "cd website && npm start",
     "install": "cd website && npm install && cd ../api && npm install"
