@@ -1,0 +1,39 @@
+language: python
+python:
+  - '2.7'
+sudo: required
+
+cache:
+  pip: true
+  directories:
+    - node_modules
+
+install:
+  - nvm install 9.4.0
+  - npm install
+  - pip install awscli
+
+script:
+  - cd api 
+  - npm run lint
+
+before_deploy:
+  - cd website && npm run-script ng build -- --prod --aot --configuration=dev
+  
+deploy:
+  - provider: s3
+    skip_cleanup: true
+    local_dir: website/dist
+    access_key_id: "$AWS_ACCESS_KEY_ID"
+    secret_access_key:
+      secure: "$AWS_SECRET_ACCESS_KEY"
+    bucket: "$AWS_BUCKET"
+    on:
+      branch: master
+  - provider: script
+    script: chmod +x ./scripts/deploy-api.sh && ./scripts/deploy-api.sh
+    on:
+      branch: master
+
+after_deploy:
+  - aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
