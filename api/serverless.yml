@@ -5,7 +5,7 @@ plugins:
   - serverless-offline
 
 package:
-  #individually: true
+  individually: true
   # exclude:
   #   - 'scripts/**'
 
@@ -23,6 +23,19 @@ provider:
   region: us-east-1
   environment: ${file(env.yml):${self:custom.stage}}
 
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - "Fn::GetAtt": [ HeroesTable, Arn ]
+
 functions:
   docs:
     handler: src/index.handler
@@ -31,3 +44,41 @@ functions:
           path: /
           method: GET
           cors: true
+  listHeroes:
+    handler: src/heroes/list.handler
+    events:
+      - http:
+          path: /heroes
+          method: GET
+          cors: true
+  createHero:
+    handler: src/heroes/create.handler
+    events:
+      - http:
+          path: /heroes
+          method: POST
+          cors: true
+  getHero:
+    handler: src/heroes/get.handler
+    events:
+      - http:
+          path: /heroes/{id}
+          method: GET
+          cors: true
+  updateHero:
+    handler: src/heroes/update.handler
+    events:
+      - http:
+          path: /heroes/{id}
+          method: PUT
+          cors: true
+  deleteHero:
+    handler: src/heroes/delete.handler
+    events:
+      - http:
+          path: /heroes/{id}
+          method: DELETE
+          cors: true
+
+resources:
+  - ${file(resources/dynamodb-table.yml)}

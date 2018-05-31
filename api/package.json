@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "serverless offline start",
+    "start": "serverless offline start --stage local",
     "test": "jest --config jest-config.js",
     "test:coverage": "jest --coverage --config jest-config.js",
     "test:watch": "npm test -- --watch",
@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "body-parser": "^1.18.2",
     "joi": "^13.2.0",
-    "source-map-support": "^0.5.4"
+    "source-map-support": "^0.5.4",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "aws-sdk": "^2.224.1",
