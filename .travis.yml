@@ -14,12 +14,15 @@ install:
   - nvm install 9.4.0
   - npm install -g serverless
   - npm install
+  - cd api && npm install && cd ../website && npm install && cd ../
   - pip install awscli
 
 script:
   - cd api 
   - npm run lint
+  - ls
   - cd ../website && npm run-script ng build -- --prod --aot --configuration=dev
+  - ls
   - cd ../
   - sls --version
   - echo "script finished"
