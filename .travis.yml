@@ -20,7 +20,7 @@ install:
 script:
   - cd api 
   - npm run lint
-  - chmod +x ./scripts/api-env-vars.sh && ./scripts/api-env-vars.sh
+  - chmod +x ../scripts/api-env-vars.sh && ../scripts/api-env-vars.sh
   - ls
   - cd ../website && npm run-script ng build -- --prod --aot --configuration=dev
   - ls
