@@ -7,6 +7,8 @@ cache:
   pip: true
   directories:
     - node_modules
+    - api/node_modules
+    - website/node_modules
 
 install:
   - nvm install 9.4.0
@@ -21,8 +23,13 @@ script:
   - cd ../
   - sls --version
   - echo "script finished"
+  
 
 deploy:
+  - provider: script
+    script: chmod +x ./scripts/deploy-api.sh && ./scripts/deploy-api.sh
+    on:
+      branch: master
   - provider: s3
     skip_cleanup: true
     local_dir: website/dist
@@ -30,10 +37,6 @@ deploy:
     secret_access_key:
       secure: "$AWS_SECRET_ACCESS_KEY"
     bucket: "$AWS_BUCKET"
-    on:
-      branch: master
-  - provider: script
-    script: chmod +x ./scripts/deploy-api.sh && ./scripts/deploy-api.sh
     on:
       branch: master
 

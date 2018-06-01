@@ -1,13 +1,18 @@
 {
   "name": "serverless-tour-of-heroes",
   "version": "1.0.0",
-  "description":
-    "The Angular Tour of Heroes demo digitally remastered with serverless architecture",
+  "description": "The Angular Tour of Heroes demo digitally remastered with serverless architecture",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jongear/serverless-tour-of-heroes.git"
   },
-  "keywords": ["serverless", "angular", "tour", "of", "heroes"],
+  "keywords": [
+    "serverless",
+    "angular",
+    "tour",
+    "of",
+    "heroes"
+  ],
   "author": "Jon Gear <askjon@jongear.io>",
   "license": "ISC",
   "bugs": {
@@ -19,5 +24,8 @@
     "start:api": "cd api && npm start",
     "start:website": "cd website && npm start",
     "postinstall": "cd website && npm install && cd ../api && npm install"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.249.1"
   }
 }
