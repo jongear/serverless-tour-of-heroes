@@ -24,8 +24,5 @@
     "start:api": "cd api && npm start",
     "start:website": "cd website && npm start",
     "postinstall": "cd website && npm install && cd ../api && npm install"
-  },
-  "devDependencies": {
-    "aws-sdk": "^2.249.1"
   }
 }

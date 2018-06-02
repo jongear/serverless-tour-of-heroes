@@ -6,14 +6,12 @@ sudo: required
 cache:
   pip: true
   directories:
-    - node_modules
     - api/node_modules
     - website/node_modules
 
 install:
   - nvm install 9.4.0
   - npm install -g serverless
-  - npm install
   - cd api && npm install && cd ../website && npm install && cd ../
   - pip install awscli
 
@@ -21,9 +19,7 @@ script:
   - cd api 
   - npm run lint
   - chmod +x ../scripts/api-env-vars.sh && ../scripts/api-env-vars.sh
-  - ls
   - cd ../website && npm run-script ng build -- --prod --aot --configuration=dev
-  - ls
   - cd ../
   - sls --version
   - echo "script finished"
