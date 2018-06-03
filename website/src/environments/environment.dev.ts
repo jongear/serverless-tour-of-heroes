@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://localhost:3000"
+  apiUrl: "https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev" // replaces me with the API Gateway uri or a Custom Domain Name
 };
 
 /*
