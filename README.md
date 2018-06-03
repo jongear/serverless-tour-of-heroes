@@ -31,6 +31,16 @@ npm install
 
 Running install in the root will kick off a `postinstall` script that will recurse through each directory installing necessary packages.
 
+### Setup API
+
+Copy the example environment file.
+
+```
+ cp api/example.env.yml api/env.yml
+```
+
+The Serverless API leverages `env.yml` to set environment variables. By default the API is setup to gather variables from `local`.
+
 ## Development
 
 For ease of development a few scripts have been added to this demo application
