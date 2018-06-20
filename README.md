@@ -32,7 +32,7 @@ In order for our serverless application to run we will need to create a user wit
 > Make sure to give the user admin rights
 
 <p align="center">
-    <img alt="User admin full access" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/user-admin.png" width="500" />
+    <img alt="User admin full access" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/user-admin.png" width="600" />
 </p>
 
 ### Create S3 bucket
@@ -48,7 +48,7 @@ Next we need to [create an S3 bucket](https://s3.console.aws.amazon.com/s3/home)
 Next we need to [create a CloudFront Distribution](https://console.aws.amazon.com/cloudfront/home). CloudFront is needed as the servicing side to our application. CloudFront allows for custom error page responses as well as direct CNAME integration to bring a fullfledged webhosting experience.
 
 <p align="center">
-    <img alt="Setup a CloudFront distribution" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-settings.png" width="500" />
+    <img alt="Setup a CloudFront distribution" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-settings.png" width="700" />
 </p>
 
 When creating the distribution select the S3 bucket you configured in the previous step as the `Origin Domain Name`. You can then scroll down to the `Distirbution Settings` section and add a CNAME if you intend to attach this distribution to a domain, otherwise leave blank. Lastly, make sure to add a `Default Root Object` of `index.html`. This will tell CloudFront that we intend to make the `index.html` of our selected S3 Origin Domain Name the entry point that CloudFront should hand back to browsers.
@@ -70,7 +70,7 @@ This section is not needed but is advisable for anything you intend to ship. The
 To start, we will need to update our CloudFront origin. Go back to your CloudFront distribution, tab over to the `Origins` tab and edit the origin. Elect to `Restrict Bucket Access` and allow `Origin Access Identity` to create a new identity. Save your edit and you should see a screen similar to this
 
 <p align="center">
-    <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-bonus.png" width="600" />
+    <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-bonus.png" width="800" />
 </p>
 
 Copy the `Origin Access Identiy`, this will be needed in our `S3 Bucket Policy` to grant CloudFront access to our secure bucket
@@ -78,7 +78,7 @@ Copy the `Origin Access Identiy`, this will be needed in our `S3 Bucket Policy` 
 #### S3 **BONUS Security**
 
 <p align="center">
-    <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/s3-bonus.png" width="600" />
+    <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/s3-bonus.png" width="800" />
 </p>
 
 ## Setup
