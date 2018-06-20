@@ -9,6 +9,10 @@ cache:
     - api/node_modules
     - website/node_modules
 
+branches:
+  only:
+    - master
+
 install:
   - nvm install 9.4.0
   - npm install -g serverless

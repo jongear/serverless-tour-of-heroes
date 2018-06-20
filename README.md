@@ -1,4 +1,4 @@
-**[Setup](#setup)** | **[Development](#development)** | **[Deployment](#deployment)**
+**[Prerequisites](#prerequisites)** | **[Setup](#setup)** | **[Development](#development)** | **[Deployment](#deployment)**
 
 [![Build Status](https://travis-ci.org/jongear/serverless-tour-of-heroes.svg?branch=master)](https://travis-ci.org/jongear/serverless-tour-of-heroes)
 
@@ -20,6 +20,8 @@ This application resides in [/api](https://github.com/jongear/serverless-tour-of
 
 The website is the [Angular Tour of Heroes demo](https://angular.io/tutorial) which is an almost completely untouched replica of the tutorial.
 The website resides in [/website](https://github.com/jongear/serverless-tour-of-heroes/tree/master/website) and is deployed out to [S3](https://aws.amazon.com/s3/) which is exposed by [CloudFront](https://aws.amazon.com/cloudfront/)
+
+## Prerequisites
 
 ## Setup
 
