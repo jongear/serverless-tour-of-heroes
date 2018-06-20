@@ -1,6 +1,6 @@
 cat <<EOF > env.yml
-dev:
-    DYNAMODB_TABLE: "dev-heroes"
+prod:
+    DYNAMODB_TABLE: "prod-heroes"
 
 EOF
 

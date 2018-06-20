@@ -23,7 +23,7 @@ script:
   - cd api 
   - npm run lint
   - chmod +x ../scripts/api-env-vars.sh && ../scripts/api-env-vars.sh
-  - cd ../website && npm run-script ng build -- --prod --aot --configuration=dev
+  - cd ../website && npm run-script ng build -- --prod --aot --configuration=prod
   - cd ../
   - sls --version
   - echo "script finished"
