@@ -23,6 +23,64 @@ The website resides in [/website](https://github.com/jongear/serverless-tour-of-
 
 ## Prerequisites
 
+### Create User
+
+In order for our serverless application to run we will need to create a user with appropriate privileges. For the puposes of this demo we will assume that you are operating in an account that allowing admin rights to a user will not jeporadize the account. This user will be used by [Travis CI](https://docs.travis-ci.com/) to deploy out our application.
+
+[Create AWS User](https://console.aws.amazon.com/iam/home?#/users$new?step=details)
+
+> Make sure to give the user admin rights
+
+<p align="center">
+    <img alt="User admin full access" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/user-admin.png" width="500" />
+</p>
+
+### Create S3 bucket
+
+Next we need to [create an S3 bucket](https://s3.console.aws.amazon.com/s3/home) to house our angular application. I named mine `serverless-tour-of-heroes` but you can name yours whatever you like. One created go to the properties tab of the bucket and enable `Static website hosting` with the following values. Since our angular UI is a single page application we need to ensure that any errors incurred are handled by our `index.html`
+
+<p align="center">
+    <img alt="Set S3 static website hosting to index.html" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/s3-static.png" width="500" />
+</p>
+
+### Create CloudFront Distribution
+
+Next we need to [create a CloudFront Distribution](https://console.aws.amazon.com/cloudfront/home). CloudFront is needed as the servicing side to our application. CloudFront allows for custom error page responses as well as direct CNAME integration to bring a fullfledged webhosting experience.
+
+<p align="center">
+    <img alt="Setup a CloudFront distribution" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-settings.png" width="500" />
+</p>
+
+When creating the distribution select the S3 bucket you configured in the previous step as the `Origin Domain Name`. You can then scroll down to the `Distirbution Settings` section and add a CNAME if you intend to attach this distribution to a domain, otherwise leave blank. Lastly, make sure to add a `Default Root Object` of `index.html`. This will tell CloudFront that we intend to make the `index.html` of our selected S3 Origin Domain Name the entry point that CloudFront should hand back to browsers.
+
+Create the distribution then navigate to the `Error Pages` tab to add the following configurations.
+
+<p align="center">
+    <img alt="Set S3 static website hosting to index.html" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-errors.png" width="800" />
+</p>
+
+The 403 and 404 error code redirects we are adding are needed to route errors back to our angular application so that our angular code can handle them appropriately.
+
+### S3 and CloudFront **BONUS Security**
+
+This section is not needed but is advisable for anything you intend to ship. The S3 configurations we made in an earlier step allow S3 to be publicly accessible which is not always desirable. We can add a `S3 Bucket Policy` that will lock the bucket down to only our deployment user and our CloudFront distribution.
+
+#### Cloudfront **BONUS Security**
+
+To start, we will need to update our CloudFront origin. Go back to your CloudFront distribution, tab over to the `Origins` tab and edit the origin. Elect to `Restrict Bucket Access` and allow `Origin Access Identity` to create a new identity. Save your edit and you should see a screen similar to this
+
+<p align="center">
+    <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/cloudfront-bonus.png" width="600" />
+</p>
+
+Copy the `Origin Access Identiy`, this will be needed in our `S3 Bucket Policy` to grant CloudFront access to our secure bucket
+
+#### S3 **BONUS Security**
+
+<p align="center">
+    <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/s3-bonus.png" width="600" />
+</p>
+
 ## Setup
 
 The Serverless ToH demo has been setup to install both application dependencies off of a install command in the root solution directory
