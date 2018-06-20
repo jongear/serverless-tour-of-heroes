@@ -1,8 +1,8 @@
 **[Prerequisites](#prerequisites)** | **[Setup](#setup)** | **[Development](#development)** | **[Deployment](#deployment)**
 
-[![Build Status](https://travis-ci.org/jongear/serverless-tour-of-heroes.svg?branch=master)](https://travis-ci.org/jongear/serverless-tour-of-heroes)
-
 # Serverless Tour of Heroes (Serverless ToH)
+
+[![Build Status](https://travis-ci.org/jongear/serverless-tour-of-heroes.svg?branch=master)](https://travis-ci.org/jongear/serverless-tour-of-heroes)
 
 This is an example project of the Angular Tour of Heroes demo application digitally remastered with serverless architecture. The Serverless ToH demo is powered by Node.js and is a monorepo containing two applications.
 
