@@ -77,6 +77,8 @@ Copy the `Origin Access Identiy`, this will be needed in our `S3 Bucket Policy` 
 
 #### S3 **BONUS Security**
 
+To bring security full circle we will need to update the `Bucket Policy` to allow our CloudFront distribution and our deployment user to access resources only.
+
 <p align="center">
     <img alt="Restrict Bucket Access in CloudFront" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/s3-bonus.png" width="800" />
 </p>
