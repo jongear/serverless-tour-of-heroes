@@ -6,7 +6,7 @@
 
 This is an example project of the Angular Tour of Heroes demo application digitally remastered with serverless architecture. The Serverless ToH demo is powered by Node.js and is a monorepo containing two applications.
 
-[Live Demo](https://serverlesstourofheroes.com) | [MeetUp Presentation](https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/Serverless Tour of Heroes - 6-20-2018.pdf)
+[Live Demo](https://serverlesstourofheroes.com) | [MeetUp Presentation](https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/Serverless%20Tour%20of%20Heroes%20-%206-20-2018.pdf)
 
 ## Structure
 
