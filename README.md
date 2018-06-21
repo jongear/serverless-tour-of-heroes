@@ -13,6 +13,10 @@ This is an example project of the Angular Tour of Heroes demo application digita
 The Serverless ToH demo is structured as a monorepo to allow for a single `git clone` and startup solution.
 Within this repository you will find the working codebase for the API as well as for the Angular powered website.
 
+<p align="center">
+    <img alt="User admin full access" src="https://github.com/jongear/serverless-tour-of-heroes/raw/master/assets/arch-diagram.png" width="800" />
+</p>
+
 ### API
 
 The API is a serverless API that is backed by API Gateway utilizing Node.js and the [Serverless Framework](https://serverless.com/framework/docs/providers/aws/guide/quick-start/).
